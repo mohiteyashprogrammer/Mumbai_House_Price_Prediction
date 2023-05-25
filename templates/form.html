@@ -1,0 +1,189 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumbai House Price Prediction</title>
+    <div style="background-image: url(https://media.architecturaldigest.in/wp-content/uploads/2020/05/Mumbai-Lodha-World-One-towers-apartment-9.jpg);">
+
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    <!-- css -->
+    <link rel="stylesheet" href="static/css/styles.css">
+    
+
+</head>
+
+<body>
+
+    <!-- As a heading -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Mumbai House Price Prediction BY Yash Mohite</a>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br>
+
+
+    <div class="container">
+
+        <form action="{{ url_for('predict_datapoint') }}" method="POST">
+            <h1>Welcome to Mumbai House Price Prediction</h1>
+            <div class="form-group">
+                <label for="Location">Location:</label>
+                <select id="Location" name="Location" required="1">
+                    {% for i in Location %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Area">Area:</label>
+                <input type="text" id="Area" name="Area" placeholder="Enter value (float)">
+            </div>
+
+            <div class="form-group">
+                <label for="No_of_Bedrooms">No of Bedrooms:</label>
+                <select id="No_of_Bedrooms" name="No_of_Bedrooms">
+                    <option value="1.0">One BHK</option>
+                    <option value="2.0">Two BHK</option>
+                    <option value="3.0">Three BKK</option>
+                    <option value="4.0">Four BHK</option>
+                    <option value="5.0">Five BHK</option>
+                    <option value="6.0">Six BHK</option>
+                    <option value="7.0">Seven BHK</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="New_Resale">New Resale:</label>
+                <select id="New_Resale" name="New_Resale">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Gymnasium">Gymnasium:</label>
+                <select id="Gymnasium" name="Gymnasium">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Lift_Available">Lift Available:</label>
+                <select id="Lift_Available" name="Lift_Available">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Car_Parking">Car Parking:</label>
+                <select id="Car_Parking" name="Car_Parking">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Maintenance_Staff">Maintenance Staff:</label>
+                <select id="Maintenance_Staff" name="Maintenance_Staff">
+                    <option value="0.0">No</option>
+                    <option value="1.0">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="_24x7_Security"> 24x7 Security:</label>
+                <select id="_24x7_Security" name="_24x7_Security">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Childrens_Play_Area">Childrens Play Area:</label>
+                <select id="Childrens_Play_Area" name="Childrens_Play_Area">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Clubhouse">Clubhouse:</label>
+                <select id="Clubhouse" name="Clubhouse">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Intercom">Intercom:</label>
+                <select id="Intercom" name="Intercom">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Landscaped_Gardens">Landscaped Gardens:</label>
+                <select id="Landscaped_Gardens" name="Landscaped_Gardens">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Indoor_Games">Indoor Games:</label>
+                <select id="Indoor_Games" name="Indoor_Games">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Gas_Connection">Gas Connection:</label>
+                <select id="Gas_Connection" name="Gas_Connection">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Jogging_Track">Jogging Track:</label>
+                <select id="Jogging_Track" name="Jogging_Track">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Swimming_Pool">Swimming Pool:</label>
+                <select id="Swimming_Pool" name="Swimming_Pool">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+<!-- Submit -->
+<input type="submit" value="Predict" class="btn btn-secondary">
+</form>
+
+<br>
+<br>
+<h3 style="color: white">{{ final_result }}</h3>
+
+<br>
+<br>
+<p>Yash Mohite</p>
+
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
